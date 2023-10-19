@@ -132,7 +132,22 @@ public class TestPayInCredit {
         page.notificationMessageNumber("Неверный формат");
 
     }
+    @Test
+        // не заполненое поле номера карты
+    void shouldErrorCreditWithEMPTYCard() {
 
+        String status = "EMPTY";
+        StartPage page = new StartPage();
+        page.buyInCredit();
+        page.inputNumberCard(status);
+        page.inputMonth(DataHelper.generateMonthPlus(0));
+        page.inputYear(DataHelper.generateYearPlus(1));
+        page.inputOwner(DataHelper.generateHolder());
+        page.inputCVC(3);
+        page.clickContinue();
+        page.notificationMessageNumber("Неверный формат");
+
+    }
     @Test
         // нулевой месяц
     void shouldErrorZeroMonthForCredit() {

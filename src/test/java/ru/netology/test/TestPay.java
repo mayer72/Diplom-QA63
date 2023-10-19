@@ -113,7 +113,22 @@ public class TestPay {
         assertEquals(null, DataHelperSQL.getOrderEntity());
         assertEquals(null, DataHelperSQL.getPaymentEntity());
     }
+    @Test
+        // с не заполненым полем номера карты
+    void shouldErrorPayWithEMPTYCard() {
 
+        String status = "EMPTY";
+        StartPage page = new StartPage();
+        page.buy();
+        page.inputNumberCard(status);
+        page.inputMonth(DataHelper.generateMonthPlus(0));
+        page.inputYear(DataHelper.generateYearPlus(1));
+        page.inputOwner(DataHelper.generateHolder());
+        page.inputCVC(3);
+        page.clickContinue();
+        page.notificationMessageNumber("Неверный формат");
+
+    }
     @Test
         // ввод пятнадцать цифр в номер карты
     void shouldErrorPayWithFIFTEENCard() {

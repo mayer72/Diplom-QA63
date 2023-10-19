@@ -30,6 +30,8 @@ public class DataHelper {
             return "4444 4444 4444 4443";
         } else if (status.equalsIgnoreCase("ZERO")) {
             return "0000 0000 0000 0000";
+        } else if (status.equalsIgnoreCase("EMPTY")) {
+            return "";
         } else if (status.equalsIgnoreCase("FIFTEEN")) {
             return faker.numerify("#### #### #### ###");
         }

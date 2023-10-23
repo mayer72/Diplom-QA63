@@ -34,8 +34,6 @@ public class StartOfCardFunctionality {
     private SelenideElement notificationError = $(".notification_status_error");
 
 
-
-
     public StartOfCardFunctionality() {
         heading.shouldBe(visible);
         buyButton.shouldBe(visible);

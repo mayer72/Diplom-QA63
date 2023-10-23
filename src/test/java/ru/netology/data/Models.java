@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 public class Models {
-    private Models(){
+    private Models() {
 
     }
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor

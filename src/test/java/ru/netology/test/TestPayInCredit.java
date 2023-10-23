@@ -9,13 +9,13 @@ import ru.netology.data.Models;
 import ru.netology.page.StartOfCardFunctionality;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.netology.data.DataHelperSQL.cleanDatabase;
 
 public class TestPayInCredit {
 
     private static Models.CreditRequestEntity credit;
-    private static Models .OrderEntity order;
+    private static Models.OrderEntity order;
 
     @BeforeAll
     static void setUpAll() {
@@ -93,8 +93,9 @@ public class TestPayInCredit {
         page.inputCVC(3);
         page.clickContinue();
         page.notificationError();
-        assertEquals(null, DataHelperSQL.getOrderEntity());
-        assertEquals(null, DataHelperSQL.getCreditRequestEntity());
+
+        assertNull(DataHelperSQL.getOrderEntity(), "Не действующая карта");
+        assertNull(DataHelperSQL.getCreditRequestEntity());
 
     }
 
@@ -112,8 +113,9 @@ public class TestPayInCredit {
         page.inputCVC(3);
         page.clickContinue();
         page.notificationError();
-        assertEquals(null, DataHelperSQL.getOrderEntity());
-        assertEquals(null, DataHelperSQL.getCreditRequestEntity());
+
+        assertNull(DataHelperSQL.getOrderEntity(), "Номер карты не должен быть с нулевыми значениями");
+        assertNull(DataHelperSQL.getCreditRequestEntity());
 
     }
 

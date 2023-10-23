@@ -2,8 +2,8 @@
 ## Документация
 
 * [План выполнения работ](https://github.com/mayer72/Diplom-QA63/blob/main/Documentation/Plan.md)
-* [Отчет о проведенном тестировании]()
-* [Отчет о проведенной автоматизации]()
+* [Отчет о проведенном тестировании](https://github.com/mayer72/Diplom-QA63/blob/main/Documentation/Report.md)
+* [Отчет о проведенной автоматизации](https://github.com/mayer72/Diplom-QA63/blob/main/Documentation/Summary.md)
 
 # Задача
  Ключевая задача — автоматизировать позитивные и негативные сценарии покупки тура.

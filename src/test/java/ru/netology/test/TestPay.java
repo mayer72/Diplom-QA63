@@ -5,6 +5,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.data.DataHelperSQL;
+import ru.netology.data.Models;
 import ru.netology.page.StartOfCardFunctionality;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -13,8 +14,8 @@ import static ru.netology.data.DataHelperSQL.cleanDatabase;
 
 public class TestPay {
 
-    private static DataHelper.PaymentEntity payment;
-    private static DataHelper.OrderEntity order;
+    private static Models.PaymentEntity payment;
+    private static Models.OrderEntity order;
 
     @BeforeAll
     static void setUpAll() {
@@ -37,7 +38,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Номер карты со статусом DECLINED для оплаты")
+    @DisplayName("Card number with DECLINED status for payment")
     void shouldErrorPayWithDECLINEDCard() {
 
         String status = "DECLINED";
@@ -54,7 +55,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Номер карты со статусом \"APPROVED\" к оплате")
+    @DisplayName("Card number with the status \"APPROVED\" for payment")
     void shouldSuccessfulPayWithAPPROVEDCard() {
 
         String status = "APPROVED";
@@ -77,7 +78,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Номер карты со статусом НЕДЕЙСТВИТЕЛЬНЫЙ для оплаты")
+    @DisplayName("Card number with status INVALID for payment")
     void shouldErrorPayWithINVALIDCard() {
 
         String status = "INVALID";
@@ -96,7 +97,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Номер кредитной карты с нулевым статусом для зачисления")
+    @DisplayName("Credit card number with zero status for enrollment")
     void shouldErrorPayWithZEROCard() {
 
         String status = "ZERO";
@@ -115,7 +116,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("С не заполненым полем номера карты")
+    @DisplayName("With the card number field blank")
     void shouldErrorPayWithEMPTYCard() {
 
         String status = "EMPTY";
@@ -131,7 +132,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Bвод пятнадцать цифр в номер карты")
+    @DisplayName("Enter fifteen digits into the card number")
     void shouldErrorPayWithFIFTEENCard() {
 
         String status = "FIFTEEN";
@@ -147,7 +148,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("нулевой месяц")
+    @DisplayName("zero month")
     void shouldErrorZeroMonthForPay() {
 
         String status = "APPROVED";
@@ -163,7 +164,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Истёкший срок годности карты месяца")
+    @DisplayName("Expired month card")
     void shouldErrorOverMonthForPay() {
 
         String status = "APPROVED";
@@ -179,7 +180,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Ввод одной цифры месяца")
+    @DisplayName("Entering one digit of the month")
     void shouldErrorOneDigitMonthForPay() {
 
         String status = "APPROVED";
@@ -195,7 +196,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Ввод нулевого года")
+    @DisplayName("Entering a zero year")
     void shouldErrorZeroYearForPay() {
 
         String status = "APPROVED";
@@ -211,7 +212,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Ввод невалидного года из двух цифер")
+    @DisplayName("Entering an invalid year from two digits")
     void shouldErrorMoreYearForPay() {
 
         String status = "APPROVED";
@@ -227,7 +228,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Истекший срок карты по году")
+    @DisplayName("Expired card term by year")
     void shouldErrorLessYearForPay() {
 
         String status = "APPROVED";
@@ -243,7 +244,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Название кредита на кириллице")
+    @DisplayName("Loan name in Cyrillic")
     void shouldErrorCyrillicNameForPayment() {
 
         String status = "APPROVED";
@@ -259,7 +260,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Ввод невалидного имени цифрами")
+    @DisplayName("Entering an invalid name in numbers")
     void shouldErrorNumberNameForPayment() {
 
         String status = "APPROVED";
@@ -275,7 +276,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Ввод имени из одной буквы")
+    @DisplayName("Entering a one-letter name")
     void shouldErrorOneLetterNameForPayment() {
 
         String status = "APPROVED";
@@ -291,7 +292,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Ввод имени специальными символами")
+    @DisplayName("Entering a name using special characters")
     void shouldErrorSpecCharNameForPayment() {
 
         String status = "APPROVED";
@@ -307,7 +308,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("CVC из двух цифер")
+    @DisplayName("CVC of two digits")
     void shouldErrorTwoDigCVCForPayment() {
 
         String status = "APPROVED";
@@ -323,7 +324,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("CVC из одной цифры")
+    @DisplayName("Single digit CVC")
     void shouldErrorOneDigCVCForPayment() {
 
         String status = "APPROVED";
@@ -339,7 +340,7 @@ public class TestPay {
     }
 
     @Test
-    @DisplayName("Незаполненная форма")
+    @DisplayName("Incomplete form")
     void shouldMessageFilInFieldInPay() {
 
         StartOfCardFunctionality page = new StartOfCardFunctionality();

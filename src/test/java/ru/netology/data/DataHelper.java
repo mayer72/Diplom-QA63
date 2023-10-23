@@ -1,11 +1,11 @@
 package ru.netology.data;
 
 import com.github.javafaker.Faker;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.sql.Timestamp;
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
+//
+//import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -97,35 +97,35 @@ public class DataHelper {
         return faker.numerify(str.substring(0,amount));
     }
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class PaymentEntity {
-        private String id;
-        private int amount;
-        private Timestamp created;
-        private String status;
-        private String transaction_id;
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class CreditRequestEntity {
-        private String id;
-        private String bank_id;
-        private Timestamp created;
-        private String status;
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class OrderEntity {
-        private String id;
-        private Timestamp created;
-        private String credit_id;
-        private String payment_id;
-    }
+//    @Data
+//    @NoArgsConstructor
+//    @AllArgsConstructor
+//    public static class PaymentEntity {
+//        private String id;
+//        private int amount;
+//        private Timestamp created;
+//        private String status;
+//        private String transaction_id;
+//    }
+//
+//    @Data
+//    @NoArgsConstructor
+//    @AllArgsConstructor
+//    public static class CreditRequestEntity {
+//        private String id;
+//        private String bank_id;
+//        private Timestamp created;
+//        private String status;
+//    }
+//
+//    @Data
+//    @NoArgsConstructor
+//    @AllArgsConstructor
+//    public static class OrderEntity {
+//        private String id;
+//        private Timestamp created;
+//        private String credit_id;
+//        private String payment_id;
+//    }
     
 }

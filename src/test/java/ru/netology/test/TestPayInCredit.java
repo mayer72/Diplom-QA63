@@ -5,7 +5,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.data.DataHelperSQL;
-import ru.netology.page.StartPage;
+import ru.netology.page.StartOfCardFunctionality;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,11 +37,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // покупка в кредит с откланённой картой
+    @DisplayName("покупка в кредит с откланённой картой")
     void PurchaseOnCreditWithARejectedCard() {
 
         String status = "DECLINED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -56,11 +56,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // покупка в кредит с одобренной картой
+    @DisplayName("покупка в кредит с одобренной картой")
     void purchaseOnCreditWithAnApprovedCard() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -79,11 +79,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // ошибка с отклоненной картой
+    @DisplayName("ошибка с отклоненной картой")
     void errorWithRejectedCard() {
 
         String status = "INVALID";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -98,11 +98,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        //Номер кредитной карты с нулевым статусом для зачисления
+    @DisplayName("Номер кредитной карты с нулевым статусом для зачисления")
     void shouldErrorCreditWithZEROCard() {
 
         String status = "ZERO";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -117,11 +117,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // ввод пятнадцать цифр в номер карты
+    @DisplayName("ввод пятнадцать цифр в номер карты")
     void shouldErrorCreditWithFIFTEENCard() {
 
         String status = "FIFTEEN";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -132,12 +132,13 @@ public class TestPayInCredit {
         page.notificationMessageNumber("Неверный формат");
 
     }
+
     @Test
-        // не заполненое поле номера карты
+    @DisplayName("не заполненое поле номера карты")
     void shouldErrorCreditWithEMPTYCard() {
 
         String status = "EMPTY";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -148,12 +149,13 @@ public class TestPayInCredit {
         page.notificationMessageNumber("Неверный формат");
 
     }
+
     @Test
-        // нулевой месяц
+    @DisplayName("нулевой месяц")
     void shouldErrorZeroMonthForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.getZero());
@@ -166,11 +168,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // истёкший срок годности карты
+    @DisplayName("истёкший срок годности карты")
     void shouldErrorOverMonthForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.getMonthOver());
@@ -183,11 +185,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // ввод одной цифры месяца
+    @DisplayName("ввод одной цифры месяца")
     void shouldErrorOneDigitMonthForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.getMonthOneDig());
@@ -200,11 +202,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // ввод нулевого года
+    @DisplayName("ввод нулевого года")
     void shouldErrorZeroYearForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -217,11 +219,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // ввод невалидного года из двух цифер
+    @DisplayName("ввод невалидного года из двух цифер")
     void shouldErrorMoreYearForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -234,11 +236,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // истекший срок карты по году
+    @DisplayName("истекший срок карты по году")
     void shouldErrorLessYearForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -251,11 +253,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // название кредита на кириллице
+    @DisplayName("название кредита на кириллице")
     void shouldErrorCyrillicNameForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -268,11 +270,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // ввод невалидного имени цифрами
+    @DisplayName("ввод невалидного имени цифрами")
     void shouldErrorNumberNameForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -285,11 +287,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        //ввод имени из одной буквы
+    @DisplayName("ввод имени из одной буквы")
     void shouldErrorOneLetterNameForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -302,11 +304,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // ввод имени специальными символами
+    @DisplayName("ввод имени специальными символами")
     void shouldErrorSpecCharNameForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -319,11 +321,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // CVC из двух цифер
+    @DisplayName("CVC из двух цифер")
     void shouldErrorTwoDigCVCForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -336,11 +338,11 @@ public class TestPayInCredit {
     }
 
     @Test
-        // CVC из одной цифры
+    @DisplayName("CVC из одной цифры")
     void shouldErrorOneDigCVCForCredit() {
 
         String status = "APPROVED";
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.inputNumberCard(status);
         page.inputMonth(DataHelper.generateMonthPlus(0));
@@ -353,10 +355,10 @@ public class TestPayInCredit {
     }
 
     @Test
-        // должны быть заполнены все поля
+    @DisplayName("должны быть заполнены все поля")
     void AllFieldsMustBeFilledIn() {
 
-        StartPage page = new StartPage();
+        StartOfCardFunctionality page = new StartOfCardFunctionality();
         page.buyInCredit();
         page.clickContinue();
         page.notificationMessageNumber("Поле обязательно для заполнения");

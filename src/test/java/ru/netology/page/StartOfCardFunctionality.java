@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class StartPage {
+public class StartOfCardFunctionality {
     private ElementsCollection formFields = $$(".input_has-label");
     private SelenideElement ownerField = formFields.findBy(Condition.text("Владелец"));
     private SelenideElement numberField = formFields.findBy(Condition.text("Номер карты"));
@@ -28,7 +28,7 @@ public class StartPage {
     private SelenideElement month = $("input[placeholder=\"08\"]");
     private SelenideElement year = $("input[placeholder=\"22\"]");
     private SelenideElement cardOwner = formFields.findBy(Condition.text("Владелец")).$(".input__control");
-    private SelenideElement CVC = $("input[placeholder=\"999\"]");
+    private SelenideElement cvc = $("input[placeholder=\"999\"]");
     private SelenideElement continueButton = $$("button").findBy(Condition.text("Продолжить"));
     private SelenideElement notificationOk = $(".notification_status_ok");
     private SelenideElement notificationError = $(".notification_status_error");
@@ -36,7 +36,7 @@ public class StartPage {
 
 
 
-    public StartPage() {
+    public StartOfCardFunctionality() {
         heading.shouldBe(visible);
         buyButton.shouldBe(visible);
         buyInCreditButton.shouldBe(visible);
@@ -76,7 +76,7 @@ public class StartPage {
     }
 
     public void inputCVC(int amount) {
-        CVC.setValue(DataHelper.generateCVC(amount));
+        cvc.setValue(DataHelper.generateCVC(amount));
     }
 
     public void clickContinue() {
